@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transactionAcknowledge>
+	<host>casa</host>
+	<company>Barri</company>
+	<dateAndTime>MM-dd-yyyy HH:MM:SS</dateAndTime>
+	<cashierId>123321AA</cashierId>
+	<cashier>123321BBB</cashier>
+	<amount>1190.00</amount>
+	<pnr>XYZ123</pnr>
+	<passenger>
+		<name first="prasanth" last="kumar" middle="k" title="mr" />
+		<name first="raj" last="ram" middle="" title="" />
+		<name first="ravi" last="" middle="" title="mr" />
+	</passenger>
+	<flights>
+		<flight>
+			<segment from="BLR" to="JFK" />
+			<segment from="JFK" to="ATL" />
+		</flight>
+		<flight>
+			<segment from="ATL" to="BLR" />
+		</flight>
+	</flights>
+</transactionAcknowledge>

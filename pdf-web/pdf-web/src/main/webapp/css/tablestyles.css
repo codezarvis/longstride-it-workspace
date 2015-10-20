@@ -1,0 +1,14 @@
+#month td:nth-child(9)
+{
+ text-align:center;
+}
+
+#day td:nth-child(9)
+{
+ text-align:center;
+}
+
+#search td:nth-child(9)
+{
+ text-align:center;
+}

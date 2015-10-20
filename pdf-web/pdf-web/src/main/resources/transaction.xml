@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Transaction>
+	<RequestorID>ExitoTravel</RequestorID>
+	<Password>0446b8f6eeee999a81b83b218f126f49</Password>
+	<TimeStamp>09-12-2012 15:04:15</TimeStamp>
+	<Action>RecordBooking</Action>
+	<Booking ModifyUserID="-5" CreateUserID="45020" ID="16496">
+		<Status ID="6">Held</Status>
+		<Confirmation PNR="7LBJDF" Number="" />
+		<Affiliate ID="45243" ExternalReference2=""
+			ExternalReference1="" />
+		<Agent EMail="PLAZALATINAOMAHA@HOTMAIL.COM" Phone="" Name="Tony VEGA"
+			Code="TV" />
+		<User ID="31418" UID="" />
+		<Air>
+			<Flights VC="AA">
+				<Flight Duration="10:10" Stops="1" Arrive="27-12-2012 18:50:00"
+					ToCountry="US" To="SAL" Depart="27-12-2012 08:40:00" FromCountry="US"
+					From="OMA">
+					<Segment Number="1423" Stops="0" Arrive="27-12-2012 10:45:00"
+						ToCountry="US" To="DFW" Depart="27-12-2012 08:40:00" FromCountry="US"
+						From="OMA" OperatingAirline="AA" Airline="AA" ConfNum="ENAAOE" />
+					<Segment Number="1991" Stops="0" Arrive="27-12-2012 18:50:00"
+						ToCountry="SV" To="SAL" Depart="27-12-2012 15:30:00" FromCountry="US"
+						From="DFW" OperatingAirline="AA" Airline="AA" ConfNum="ENAAOE" />
+				</Flight>
+				<Flight Duration="8:35" Stops="1" Arrive="13-01-2013 18:05:00"
+					ToCountry="US" To="OMA" Depart="13-01-2013 09:30:00" FromCountry="SV"
+					From="SAL">
+					<Segment Number="2294" Stops="0" Arrive="13-01-2013 13:05:00"
+						ToCountry="US" To="DFW" Depart="13-01-2013 09:30:00" FromCountry="SV"
+						From="SAL" OperatingAirline="AA" Airline="AA" ConfNum="ENAAOE" />
+					<Segment Number="2006" Stops="0" Arrive="13-01-2013 18:05:00"
+						ToCountry="US" To="OMA" Depart="13-01-2013 16:15:00" FromCountry="US"
+						From="DFW" OperatingAirline="AA" Airline="AA" ConfNum="ENAAOE" />
+				</Flight>
+			</Flights>
+		</Air>
+		<Promotions>
+			<Promotion ID="207"
+				Name="Casa AA/Central AmericaandSouth America (exc AA7642,43,47)"
+				Code="" Pax1And2Only="0" AllPax="1" AppliesTo="0" IsPrivate="0"
+				Exclusive="False" Type="1">
+				<Yield Type="%" MaxAmount="0.00" CalculatedOn="BASEFARE"
+					AmountMultiple="0.00" Amount="-4.00" />
+				<Date End="" Start="" />
+				<AgencyDetails>
+<![CDATA[]]>
+				</AgencyDetails>
+				<CustomerDetails>
+<![CDATA[]]>
+				</CustomerDetails>
+				<CustomLink>
+<![CDATA[]]>
+				</CustomLink>
+				<ExternalID>
+<![CDATA[]]>
+				</ExternalID>
+			</Promotion>
+		</Promotions>
+		<Financials>
+			<Item ID="7" Amount="1089.92" Private="False" />
+			<Item ID="8" Code="TotalTax" Amount="104.53" Private="False" />
+			<Item ID="44" Amount="-41.92" Private="False" />
+			<Item ID="52" Amount="0.00" Private="True" />
+			<Item ID="49" Amount="50.00" Private="True" />
+			<Item ID="48" Amount="-41.92" Private="True" />
+			<Item ID="47" Amount="0.00" Private="False" />
+			<Item ID="6" Amount="0.00" Private="False" />
+			<Item ID="17" Amount="1160.61" Private="False" />
+			<Item ID="60" Amount="0.00" Private="True" />
+			<Item ID="40" Amount="0.00" Private="False" />
+			<Item ID="39" Amount="0.00" Private="False" />
+			<Item ID="23" Amount="1160.61" Private="False" />
+			<Item ID="61" Amount="0.00" Private="True" />
+		</Financials>
+		<PaymentSchedules>
+			<Item Amount="1160.61" AgencyDueDate="09-12-2012" DueDate="10-12-2012"
+				PaidDate="" PaymentType="Full" ProductType="2">
+				<Payment>
+                    <Card Code="VI">
+                        <CVV>137</CVV>
+                        <ExpiresOn>28-04-2017</ExpiresOn>
+                        <IssuedBy>xxxx</IssuedBy>
+                        <Number>************2766</Number>
+                        <Owner>
+                            <Address>4575 S TEXAS AVE , 301B, 32839, ORLANDO, FL, US</Address>
+                            <Name>REGINA ZARAGOZA</Name>
+                            <Phone>+1(407)953-3495</Phone>
+                        </Owner>
+                    </Card>
+                </Payment>
+				</Item>
+		</PaymentSchedules>
+		<Currency ID="USD">
+			<Rate Markup="0.00" TimeStamp="01-01-0001 00:00" FromCurrency="USD">1.0000
+			</Rate>
+		</Currency>
+		<Customers>
+			<Customer ID="31418" Code="ADT" Gender="M">
+				<Name Last="GUILLEN" Middle="ISMAEL" First="MARIO" Title="Mr" />
+				<DoB>15-11-1967</DoB>
+				<EMail>PLAZALATINAOMAHA@HOTMAIL.COM</EMail>
+				<HomePhone>+1(712)308-6646</HomePhone>
+				<Seat Value="21A" Segment="1423" />
+				<Seat Value="16F" Segment="1991" />
+			</Customer>
+			<Customer ID="31418" Code="ADT" Gender="M">
+				<Name Last="K" Middle="KUMAR" First="PRASANTH" Title="Mr" />
+				<DoB>15-11-1967</DoB>
+				<EMail>PLAZALATINAOMAHA@HOTMAIL.COM</EMail>
+				<HomePhone>+1(712)308-6646</HomePhone>
+				<Seat Value="21A" Segment="1423" />
+				<Seat Value="16F" Segment="1991" />
+			</Customer>
+		</Customers>
+		<Details>
+			<URL>https
+			</URL>
+		</Details>
+	</Booking>
+</Transaction>

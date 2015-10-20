@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+ 
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <!-- DEV  -->
+        
+        <property name="connection.url">jdbc:mysql://localhost:3306/casa</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root123</property>
+        
+        <!-- STAGING 
+         
+        <property name="connection.url">jdbc:mysql://localhost:3306/bhavanar_casa_bts</property>
+        <property name="connection.username">bhavanar_bts</property>
+        <property name="connection.password">casabts123</property>
+        -->
+        
+        <!-- PROD 
+         
+        <property name="connection.url">jdbc:mysql://localhost:3306/btcasatr_bts</property>
+        <property name="connection.username">btcasatr_prasant</property>
+        <property name="connection.password">btscasa123</property>
+        -->
+        
+        <!--  property name="connection.pool_size">5</property -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        <property name="show_sql">false</property>
+        <property name="hbm2ddl.auto">validate</property>
+ 
+ 		<property name="c3p0.min_size">5</property>
+		<property name="c3p0.max_size">20</property>
+		<property name="c3p0.timeout">1800</property>
+		<property name="c3p0.max_statements">50</property>
+		<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+   
+ 		<mapping class="com.casa.booking.model.BookingInformation"/>
+ 		<mapping class="com.casa.booking.model.Store"/>
+ 		<mapping class="com.casa.booking.model.Company"/>
+ 		<mapping class="com.casa.booking.model.User"/>
+ 		<mapping class="com.casa.booking.model.TransactionAckLog"/>
+ 		<mapping class="com.casa.booking.model.PdfTemplate"/>
+ 		<mapping class="com.casa.booking.model.Airlines"/>
+ 		<!--  mapping class="com.casa.booking.model.Offers" / -->
+    </session-factory>
+</hibernate-configuration>

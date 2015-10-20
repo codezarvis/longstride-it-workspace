@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<bookingDetails>
+
+	<bookingDate>we/11/t</bookingDate>
+	<bookingStatus>ttt</bookingStatus>
+	<pnr>abcdef</pnr>
+	<travelDate>prasanth</travelDate>
+	<from>prasanth</from>
+	<to>prasanth</to>
+	
+	<payment>
+		<fare>ttt</fare>
+		<tax>ttt</tax>
+		<total>ttt</total>
+		<discount>ttt</discount>
+		<type>card</type>
+		<creditCardNo>xxxxxxx</creditCardNo>
+		<cardHolderName>xxxxxxx</cardHolderName>
+		<cardHolderAddress>xxxxxxxx</cardHolderAddress>
+	</payment>
+
+	<agent>
+		<name>ttt</name>
+		<email>ttt</email>
+		<phone>ttt</phone>
+		<locationCode>ttt</locationCode>
+		<affiliate>ttt</affiliate>
+		<address>ttt</address>
+		<city>ttt</city>
+		<state>ttt</state>
+		<country>ttt</country>
+		<zipCode>ttt</zipCode>
+		<code>ttt</code>
+	</agent>
+
+	<customers>
+		<customer>
+			<title>ttt</title>
+			<firstName>ttth</firstName>
+			<lastName>hh</lastName>
+			<middleName>hhhhhh</middleName>
+			<gender>h</gender>
+			<code>y444</code>
+			<bookingStatus>fffff</bookingStatus>
+			<dob>10/0/4566</dob>
+			<email>gggg@ggg.co</email>
+			<phone>11111</phone>
+			<airlineConfNum>11111G</airlineConfNum>
+			<bookingClass>H11111</bookingClass>
+			<seat>A23</seat>
+		</customer>
+		<customer>
+			<title>ttt</title>
+			<firstName>ttth</firstName>
+			<lastName>hh</lastName>
+			<middleName>hhhhhh</middleName>
+			<gender>h</gender>
+			<code>M444</code>
+			<bookingStatus>fffff</bookingStatus>
+			<dob>10/0/4566</dob>
+			<email>gggg@ggg.co</email>
+			<phone>11111CCC</phone>
+			<airlineConfNum>ABC</airlineConfNum>
+			<bookingClass>GH78</bookingClass>
+			<seat>A23</seat>
+		</customer>
+	</customers>
+
+	<flights>
+		<flight>
+			<number>F234</number>
+			<departureDate>Ju ff uerr222</departureDate>
+			<departureTime>12:122am</departureTime>
+			<departurePlace>dfddd</departurePlace>
+			<arrivalDate>ddd dd</arrivalDate>
+			<arrivalTime>12:45pm</arrivalTime>
+			<arrivalPlace>ffff</arrivalPlace>
+			<airlineName>fffff</airlineName>
+			<bookingClass>ffff</bookingClass>
+			<airlineConfNum>ffere</airlineConfNum>
+			<seats>G12</seats>
+		</flight>
+		<flight>
+			<number>F234</number>
+			<departureDate>Ju ff uerr222</departureDate>
+			<departureTime>12:122am</departureTime>
+			<departurePlace>dfddd</departurePlace>
+			<arrivalDate>ddd dd</arrivalDate>
+			<arrivalTime>12:45pm</arrivalTime>
+			<arrivalPlace>ffff</arrivalPlace>
+			<airlineName>fffff</airlineName>
+			<bookingClass>ffff</bookingClass>
+			<airlineConfNum>ffere</airlineConfNum>
+			<seats>G12</seats>
+		</flight>
+	</flights>
+	<offers>
+	<![CDATA[ ABC BBC XYZ MAN GOOO RTIM ]]>
+	</offers>
+</bookingDetails>
+

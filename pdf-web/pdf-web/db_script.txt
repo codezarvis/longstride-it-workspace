@@ -1,0 +1,202 @@
+CREATE TABLE `booking_information` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `requestorId` varchar(50) DEFAULT NULL,
+  `userId` varchar(50) DEFAULT NULL,
+  `agentCode` varchar(20) DEFAULT NULL,
+  `agentName` varchar(50) DEFAULT NULL,
+  `agentEmail` varchar(40) DEFAULT NULL,
+  `bookingDate` date DEFAULT NULL,
+  `travelDate` date DEFAULT NULL,
+  `pnr` varchar(15) DEFAULT NULL,
+  `amount` double DEFAULT NULL,
+  `companyCode` bigint(20) DEFAULT NULL,
+  `storeId` bigint(20) DEFAULT NULL,
+  `travellerName1` varchar(50) DEFAULT NULL,
+  `travellerName2` varchar(50) DEFAULT NULL,
+  `travellerName3` varchar(50) DEFAULT NULL,
+  `travellerName4` varchar(50) DEFAULT NULL,
+  `travellerName5` varchar(50) DEFAULT NULL,
+  `travellerName6` varchar(50) DEFAULT NULL,
+  `travellerName7` varchar(50) DEFAULT NULL,
+  `travellerName8` varchar(50) DEFAULT NULL,
+  `fromLocation` varchar(200) DEFAULT NULL,
+  `toLocation` varchar(200) DEFAULT NULL,
+  `xmlContent` longtext,
+  `xmlFileName` varchar(50) DEFAULT NULL,
+  `pdfTemplateName` varchar(50) DEFAULT NULL,
+  `airline` varchar(150) DEFAULT NULL,
+  `uuid` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `airlines` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+   `airline_code` varchar(10) DEFAULT NULL,
+  `airline_full_name` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+  );
+  
+CREATE TABLE `pdftemplate` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `storeId` bigint(20) DEFAULT NULL,
+  `companyId` bigint(20) DEFAULT NULL,
+  `region` varchar(50) DEFAULT NULL,
+  `templateType` varchar(20) DEFAULT NULL,
+  `fileName` varchar(50) DEFAULT NULL,
+  `createDate` date DEFAULT NULL,
+  `expiryDate` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `transaction_ack_log` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `companyCode` bigint(20) DEFAULT NULL,
+  `companyName` varchar(50) DEFAULT NULL,
+  `casherCode` varchar(20) DEFAULT NULL,
+  `casherName` varchar(50) DEFAULT NULL,
+  `xmlFileName` varchar(50) DEFAULT NULL,
+  `postXmlRespStatus` bigint(20) DEFAULT NULL,
+  `postXmlRespMesg` varchar(100) DEFAULT NULL,
+  `transactiontimestamp` date DEFAULT NULL,
+  `logtimestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `company` (
+  `companyName` varchar(100) DEFAULT NULL,
+  `companyId` bigint(20) NOT NULL DEFAULT '0',
+  `address` varchar(500) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `country` varchar(100) DEFAULT NULL,
+  `phone` varchar(25) DEFAULT NULL,
+  `logo` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `zip` varchar(30) DEFAULT NULL,
+  `status` varchar(20) DEFAULT 'ACTIVE',
+  PRIMARY KEY (`companyId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `store` (
+  `storeId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `companyId` bigint(20) DEFAULT NULL,
+  `address` varchar(500) DEFAULT NULL,
+  `district` varchar(100) DEFAULT NULL,
+  `state` varchar(100) DEFAULT NULL,
+  `region` varchar(50) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `country` varchar(100) DEFAULT NULL,
+  `zip` varchar(45) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `status` varchar(30) DEFAULT 'ACTIVE',
+  PRIMARY KEY (`storeId`),
+  KEY `FK_COMPANY` (`companyId`),
+  CONSTRAINT `FK_COMPANY` FOREIGN KEY (`companyId`) REFERENCES `company` (`companyId`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `userId` varchar(100) NOT NULL DEFAULT '',
+  `password` varchar(100) DEFAULT NULL,
+  `odyUserId` varchar(100) DEFAULT NULL,
+  `odyPassword` varchar(100) DEFAULT NULL,
+  `firstName` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `phoneNumber` varchar(50) DEFAULT NULL,
+  `status` varchar(20) DEFAULT 'ACTIVE',
+  `storeId` bigint(20) DEFAULT NULL,
+  `lastName` varchar(100) DEFAULT NULL,
+  `extension` varchar(15) DEFAULT NULL,
+  `fax` varchar(20) DEFAULT NULL,
+  `IATA` varchar(200) DEFAULT NULL,
+  `address` varchar(500) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `state` varchar(100) DEFAULT NULL,
+  `zip` varchar(20) DEFAULT NULL,
+  `country` varchar(100) DEFAULT NULL,
+  `referral` varchar(250) DEFAULT NULL,
+  `createTimestamp` date DEFAULT NULL,
+  `lastModifiedTimestamp` timestamp NULL DEFAULT NULL,
+  `role` varchar(50) DEFAULT NULL,
+  `createdBy` bigint(20) DEFAULT '0',
+  `lastModifiedBy` bigint(20) DEFAULT '0',
+  `isDefaultPwd` varchar(5) DEFAULT 'Yes',
+  PRIMARY KEY (`id`),
+  KEY `FK_STORE` (`storeId`),
+  CONSTRAINT `FK_STORE` FOREIGN KEY (`storeId`) REFERENCES `store` (`storeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `pdftemplate` (`id`,`storeId`,`companyId`,`region`,`templateType`,`fileName`,`createDate`,`expiryDate`) VALUES (3,NULL,45243,NULL,'Affiliate','booking_template_casa.xsl','2015-06-01','2999-12-31');
+INSERT INTO `pdftemplate` (`id`,`storeId`,`companyId`,`region`,`templateType`,`fileName`,`createDate`,`expiryDate`) VALUES (4,NULL,86705,NULL,'Affiliate','booking_template_MG.xsl','2015-06-01','2999-12-31');
+INSERT INTO `pdftemplate` (`id`,`storeId`,`companyId`,`region`,`templateType`,`fileName`,`createDate`,`expiryDate`) VALUES (5,NULL,98389,NULL,'Affiliate','booking_template_Barri.xsl','2015-06-01','2999-12-31');
+INSERT INTO `pdftemplate` (`id`,`storeId`,`companyId`,`region`,`templateType`,`fileName`,`createDate`,`expiryDate`) VALUES (6,NULL,99621,NULL,'Affiliate','booking_template_MicroManos.xsl','2015-06-01','2999-12-31');
+INSERT INTO `pdftemplate` (`id`,`storeId`,`companyId`,`region`,`templateType`,`fileName`,`createDate`,`expiryDate`) VALUES (7,NULL,86933,NULL,'Affiliate','booking_template_OrderExPress.xsl','2015-06-01','2999-12-31');
+INSERT INTO `pdftemplate` (`id`,`storeId`,`companyId`,`region`,`templateType`,`fileName`,`createDate`,`expiryDate`) VALUES (8,NULL,96720,NULL,'Affiliate','booking_template_UNBank.xsl','2015-06-01','2999-12-31');
+INSERT INTO `pdftemplate` (`id`,`storeId`,`companyId`,`region`,`templateType`,`fileName`,`createDate`,`expiryDate`) VALUES (9,1,45243,NULL,'Store','booking_template_casa_blr_mg_road.xsl','2015-06-06','2015-06-15');
+INSERT INTO `pdftemplate` (`id`,`storeId`,`companyId`,`region`,`templateType`,`fileName`,`createDate`,`expiryDate`) VALUES (10,NULL,45243,'South','Region','booking_template_casa_south.xsl','2015-06-06','2015-06-30');
+INSERT INTO `pdftemplate` (`id`,`storeId`,`companyId`,`region`,`templateType`,`fileName`,`createDate`,`expiryDate`) VALUES (11,NULL,54321,NULL,'Affiliate','booking_template_sigue.xsl','2015-06-06','2999-12-31');
+
+
+INSERT INTO `company` (`companyName`,`companyId`,`address`,`city`,`country`,`phone`,`logo`) VALUES ('Casa Travel',45243,'MG Road','Bangalore','IN','9742',NULL);
+INSERT INTO `company` (`companyName`,`companyId`,`address`,`city`,`country`,`phone`,`logo`) VALUES ('Sigue Corp',54321,'Brigade Road','Bangalore','IN','654321',NULL);
+INSERT INTO `company` (`companyName`,`companyId`,`address`,`city`,`country`,`phone`,`logo`) VALUES ('MoneyGram',86705,'Mount Road','Chennai','IN','3456789',NULL);
+INSERT INTO `company` (`companyName`,`companyId`,`address`,`city`,`country`,`phone`,`logo`) VALUES ('Order Express',86933,'Trunk Road','Nellore','IN','234567',NULL);
+INSERT INTO `company` (`companyName`,`companyId`,`address`,`city`,`country`,`phone`,`logo`) VALUES ('UnBank',96720,'Cost Road','Mumbai','IN','435343',NULL);
+INSERT INTO `company` (`companyName`,`companyId`,`address`,`city`,`country`,`phone`,`logo`) VALUES ('CFSC',97945,'SP Road','Hyderabad','IN','9876567',NULL);
+INSERT INTO `company` (`companyName`,`companyId`,`address`,`city`,`country`,`phone`,`logo`) VALUES ('Barri Group',98389,'Airport Road','Bangalore','IN','123232',NULL);
+INSERT INTO `company` (`companyName`,`companyId`,`address`,`city`,`country`,`phone`,`logo`) VALUES ('Payomatic',98897,'MM Road','Mumbai','IN','434354',NULL);
+INSERT INTO `company` (`companyName`,`companyId`,`address`,`city`,`country`,`phone`,`logo`) VALUES ('Micro Manos',99621,'MK Road','San Jose','US','34545',NULL);
+
+
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (1,45243,'Bangalore MG Road','BLR','KA','South','BLR-MG Road','12345','Bangalore','IN','Z2345');
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (2,45243,'Bangalore Brigade Road','BLR','KA','South','BLR-Brigade Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (3,45243,'Chennai Mount Road','CHN','TN','South','Chennai Mount Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (4,45243,'Mumbai JK Road','MUM','MH','North','Mumbai JK Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (5,45243,'Mumbai Marine Road','MUM','MH','North','Mumbai Marine Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (6,86705,'Bangalore Residency Road','BLR','KA','South','Bangalore Residency Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (7,86705,'Bangalore Malya Road','BLR','KA','South','Bangalore Malya Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (8,86705,'Hyderabad SP Road','HYD','TN','South','Hyderabad SP Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (9,86705,'Delhi RajBhavan Road','DEL','DEL','North','Delhi RajBhavan Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (10,86705,'Mumbai Beach Road','MUM','MH','North','Mumbai Beach Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (11,86933,'Bangalore MG Road','BLR','KA','South','Bangalore MG Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (12,96720,'Bangalore MG Road','BLR','KA','South','Bangalore MG Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (13,98389,'Bangalore MG Road','BLR','KA','South','Bangalore MG Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (14,99621,'Bangalore MG Road','BLR','KA','South','Bangalore MG Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (15,54321,'Bangalore MG Road','BLR','KA','South','Bangalore MG Road',NULL,NULL,NULL,NULL);
+INSERT INTO `store` (`storeId`,`companyId`,`address`,`district`,`state`,`region`,`name`,`phone`,`city`,`country`,`zip`) VALUES (17,45243,'Test DRP','MUM',NULL,NULL,'Mun Store','5675','BLR','BLR','zip');
+
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (1,'arnold','123abc','11121','123abc','Arnold','arnold@abc.com','9742703692','ACTIVE',1,'AB','','','','','','','','',NULL,NULL,'2015-09-16 13:22:39','Affiliate',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (2,'boult','123abc','22227','123abc','Boult','boult@abc.com','9742703692','ACTIVE',8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (3,'bravo','123abc','22232','123abc','Bravo','bravo@abc.com','9742703692','ACTIVE',9,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (4,'brendon','123abc','22228','123abc','Brendon','brendon@abc.com','9742703692','ACTIVE',8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (5,'darren','123abc','22230','123abc','Darren','daren@abc.com','9742703692','ACTIVE',9,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (6,'james','123abc','22221','123abc','James','james@abc.com','9742703692','ACTIVE',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (7,'jason','123abc','22231','123abc','Jason','jason@abc.com','9742703692','ACTIVE',9,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Store Manager',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (8,'jenny','123abc','11112','123abc','Jenny L','pras@pras.com','974266666','ACTIVE',1,'','','','','','BLR','','','',NULL,NULL,'2015-09-16 14:30:21','District Manager',0,1);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (9,'johney','123abc','22222','123abc','Johney','johney@abc.com','9742703692','ACTIVE',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (10,'kane','123abc','22226','123abc','Kane','kane@abc.com','9742703692','ACTIVE',7,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'District Manager',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (11,'kriss','123abc','11119','123abc','Kriss','kris@abc.com','9742703692','ACTIVE',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Store Manager',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (12,'moores','123abc','11122','123abc','Moores','mores@abc.com','9742703692','ACTIVE',4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (13,'morgan','123abc','22224','123abc','Morgan','morgan@abc.com','9742703692','ACTIVE',7,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (14,'naser','123abc','11118','123abc','Naser','naser@abc.com','9742703692','ACTIVE',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Store Manager',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (15,'neel','123abc','11116','123abc','Neel','neel@abc.com','9742703692','ACTIVE',2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'District Manager',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (16,'peter','123abc','11117','123abc','Peter','peter@abc.com','9742703692','ACTIVE',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (17,'prasank','123abc','33333','123abc','Prasanth','prasank@gmail.com','9742703692','ACTIVE',11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Affiliate',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (18,'raja','123abc','77771','123abc','Raja','raj@raj.com','9742703692','ACTIVE',15,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (19,'ronald','123abc','11115','123abc','Ronald','ronald@abc.com','9742703692','ACTIVE',2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Store Manager',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (20,'ross','123abc','22225','123abc','Ross','ross@abc.com','9742703692','ACTIVE',7,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (21,'shine','123abc','11120','123abc','Shine','shine@abc.com','9742703692','ACTIVE',4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (22,'steve','123abc','11113','123abc','Steve','prasank@gmail.com','9742703692','ACTIVE',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Store Manager',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (23,'steyn','123abc','22229','123abc','Steyn','steyn@abc.com','9742703692','ACTIVE',8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Affiliate',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (24,'stuart','123abc','22223','123abc','Stuart','stuart@abc.com','9742703692','ACTIVE',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Store Manager',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (25,'sudheer','123abc','44441','123abc','Sudheer','sudh@gmail.com','9742703692','ACTIVE',12,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Affiliate',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (26,'suman','123abc','66661','123abc','Suman','suman@123.com','9742703692','ACTIVE',14,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Store Manager',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (27,'suneel','123abc','55551','123abc','Suneel','suneel@123.com','9742703692','ACTIVE',13,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (28,'tom','123abc','11114','123abc','Tom','tom@abc.com','9742703692','ACTIVE',2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cashier',0,0);
+INSERT INTO `user` (`id`,`userId`,`password`,`odyUserId`,`odyPassword`,`firstName`,`email`,`phoneNumber`,`status`,`storeId`,`lastName`,`extension`,`fax`,`IATA`,`address`,`city`,`state`,`zip`,`country`,`referral`,`createTimestamp`,`lastModifiedTimestamp`,`role`,`createdBy`,`lastModifiedBy`) VALUES (29,'tonyv','123abc','11111','123abc','Tony','tonyv@gmail.com','9742703692','ACTIVE',1,'Vega','','','','ORR','BLR','KA','Z1234P','IN',NULL,NULL,'2015-09-16 14:32:45','Admin',0,1);
+
+
+
